@@ -19,7 +19,7 @@ return [
         'db' => [
             'host' => 'localhost',
             'user' => 'root',
-            'pass' => 'Milanisti03',
+            'pass' => '',
             'dbname' => 'dbqrcode',
             'driver' => 'mysql'
         ]
