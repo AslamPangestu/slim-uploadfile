@@ -24,8 +24,8 @@ $app->get("/qrcode/", function (Request $request, Response $response){
 
 //search data
 $app->get("/qrcode/search/", function (Request $request, Response $response, $args){
-    $keyword = $request->getQueryParam("content");
-    $sql = "SELECT * FROM tbl_generated_qrcode WHERE content LIKE '%$keyword%'";
+    $keyword = $request->getQueryParam("result");
+    $sql = "SELECT * FROM tbl_generated_qrcode WHERE result LIKE '%$keyword%'";
     $stmt = $this->db->prepare($sql);
     $stmt->execute();
     $result = $stmt->fetchAll();
@@ -37,11 +37,11 @@ $app->get("/qrcode/search/", function (Request $request, Response $response, $ar
 $app->post("/qrcode/", function (Request $request, Response $response){
     $new_data = $request->getParsedBody();
 
-    $sql = "INSERT INTO tbl_generated_qrcode (content) VALUE (:content)";
+    $sql = "INSERT INTO tbl_generated_qrcode (result) VALUE (:result)";
     $stmt = $this->db->prepare($sql);
 
     $data = [
-        ":content" => $new_data["content"]
+        ":result" => $new_data["result"]
     ];
 
     if($stmt->execute($data))
